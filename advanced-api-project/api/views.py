@@ -13,6 +13,7 @@ class BookListView(generics.ListAPIView):
     serializer_class = BookSerializer
     permission_classes = [AllowAny]
     filter_backends = (filters.DjangoFilterBackend, drf_filters.OrderingFilter)
+    filter_backends=(filters.SearchFilter)
     Filterset_class = BookFilter
     ordering_fields = ['title', 'publication_year']
     ordering = ['title']
