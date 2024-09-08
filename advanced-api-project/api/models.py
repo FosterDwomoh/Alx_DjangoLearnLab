@@ -32,3 +32,12 @@ class Book(models.Model):
 
         def __str__(self):
             return self.title
+
+class BookFilter(filters.FilterSet):
+    title = filters.CharField(lookup_expr='icontains')
+    author = filters.CharField(field_name='author_name', lookup_expr = 'icontains')
+    publication_year = filters.NumberField()
+
+    class Meta:
+        model = Book
+        fields = ['title', 'author', 'publication_year']
