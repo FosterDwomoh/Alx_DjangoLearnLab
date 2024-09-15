@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('login/', views.LoginView.as_view(), name = 'login'),
@@ -27,4 +29,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls')),
     path('admin/', admin.site.urls),
+    
 ]
