@@ -13,6 +13,7 @@ from .serializer import UserSerializer
 
 get_user_model().objects.create_user
 serializers.CharField()
+generics.GenericsAPIView
 
 # Create your views here.
 class RegisterView(generics.CreateAPIView):
