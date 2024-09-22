@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-e5gq^=4tiqz1wim1a3nz#w^tnb&w4qas+k))81qz_4rxz_8e-f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['yourdomain.com', 'www.yourdomain.com']
 
 
 # Application definition
@@ -79,7 +79,12 @@ WSGI_APPLICATION = 'social_media_api.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'yourdbname',
+        'USER': 'yourdbuser',
+        'PASSWORD': 'yourdbpassword',
+        'HOST': 'yourdbhost',
+        'PORT': 'yourdbport',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
