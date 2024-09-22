@@ -13,6 +13,6 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),
     path('profile/<int:pk>/', UserProfileView.as_view(), name='profile'),
     path('', include(router.urls)),
-    path('follow/<int:user_id/', follow_user, name='follow-user'),
-    path('unfollow/<int:user_id/', unfollowfollow_user, name='unfollow'),
+    path('follow/<int:user_id>/', follow_user, name='follow-user'),
+    path('unfollow/<int:user_id>/', unfollow_user, name='unfollow'),
 ]
