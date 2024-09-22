@@ -13,7 +13,7 @@ from .serializer import UserSerializer
 
 get_user_model().objects.create_user
 serializers.CharField()
-generics.GenericsAPIView
+generics.GenericAPIView
 
 # Create your views here.
 class RegisterView(generics.CreateAPIView):
@@ -29,6 +29,7 @@ class LoginView(ObtainAuthToken):
 class UserProfileView(generics.RetrieveUpdateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permissions_classes = [permissions.IsAuthenticated]
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
