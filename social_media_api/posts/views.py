@@ -4,6 +4,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generics import ListView, DetailView, CreateView, UpdateView, DelateView
 from .forms import Post
 from .forms import PostForm
+from rest_framework import viewsets, permissions
+from .models import Post, Comment
+from .serializers import PostSerializer, CommentSerializers
 
 class PostListView(ListView):
     model = Post
@@ -43,3 +46,24 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DelateView):
         return self.request.user == post.author
 
 # Create your views here.
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    permissions_classes = [permissions.IsAuthenticated]
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
+
+    def get_queryset(self):
+        return Post.objects.filter(author=self.request.user)
+
+class CommentViewSet(viewsets.ModelViewSet):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializers
+    permissions_classes = [permissions.IsAuthenticated]
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
+
+    def get_queryset(self):
+        return Comment.objects.filter(author=self.request.user)
